@@ -4,22 +4,24 @@ const TIMER = document.getElementById('timer');
 
 let text = "";
 
-const numbers = "123456789";
-const brackets = `[] {} () <> "" ''`;
-const punctuation = "! , . ? ; : '";
-const operators = "- + / * = | & ^ % $ # @";
-const letters = "Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz";
+const digits = "0123456789";
+const brackets = "[]{}()<>";
+const quotations = `""''`;
+const punctuators = ":;!?,.";
+const operators = "~@#$%^&/*-+=|";
+const letters = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
+const all = `AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789[]{}()<>""'':;!?,.~@#$%^&/*-+=|`;
 
-text = numbers;
+text = all;
 
 INPUT.addEventListener('input', () => {
-    const array = TEXT.querySelectorAll('span');
-    const value = INPUT.value.split('');
+    const textArray = TEXT.textContent.querySelectorAll('span');
+    const textValue = INPUT.value.split('');
 
     let correct = true;
 
-    array.forEach((characterSpan, index) => {
-        const character = value[index];
+    textArray.forEach((characterSpan, index) => {
+        const character = textValue[index];
 
         if(character == null)
         {
@@ -33,7 +35,7 @@ INPUT.addEventListener('input', () => {
             characterSpan.classList.add('correct');
             characterSpan.classList.remove('incorrect');
         }
-        else
+        else if(character !== characterSpan.innerText)
         {
             correct = false;
             characterSpan.classList.remove('correct');
@@ -46,16 +48,15 @@ INPUT.addEventListener('input', () => {
 
 async function render()
 {
-    TEXT.innerHTML = '';
+    TEXT.textContent.innerHTML = '';
     text.split('').forEach(character => {
         const characterSpan = document.createElement('span')
-        characterSpan.classList.add('correct')
         characterSpan.innerText = character
-        TEXT.appendChild(characterSpan)
+        TEXT.textContent.appendChild(characterSpan)
     });
 
-    TEXT.value = null;
     timer();
+    TEXT.value = null;
 }
 
 let startTimer;
