@@ -10,12 +10,11 @@ const quotations = `""''`;
 const punctuators = ":;!?,.";
 const operators = "~@#$%^&/*-+=|";
 const letters = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
-const all = `AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789[]{}()<>""'':;!?,.~@#$%^&/*-+=|`;
 
 text = all;
 
 INPUT.addEventListener('input', () => {
-    const textArray = TEXT.textContent.querySelectorAll('span');
+    const textArray = TEXT.querySelectorAll('span');
     const textValue = INPUT.value.split('');
 
     let correct = true;
@@ -48,11 +47,11 @@ INPUT.addEventListener('input', () => {
 
 async function render()
 {
-    TEXT.textContent.innerHTML = '';
+    TEXT.innerHTML = '';
     text.split('').forEach(character => {
         const characterSpan = document.createElement('span')
         characterSpan.innerText = character
-        TEXT.textContent.appendChild(characterSpan)
+        TEXT.appendChild(characterSpan)
     });
 
     timer();
