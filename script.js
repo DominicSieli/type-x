@@ -1,78 +1,70 @@
-const TEXT = document.getElementById('text');
-const INPUT = document.getElementById('input');
-const TIMER = document.getElementById('timer');
+const INPUT = document.querySelector('body');
+const CHARACTER = document.getElementById('character');
+const CHARACTER_SETS = document.getElementById("character-sets");
 
-let text = "";
+let index = 0;
+let iterations = 0;
+let incorrect = 0;
 
-const digits = "0123456789";
-const brackets = "[]{}()<>";
-const quotations = `""''`;
-const punctuators = ":;!?,.";
-const operators = "~@#$%^&/*-+=|";
-const letters = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
+const characterSets = new Map([
+    ["Digits", "0123456789"],
+    ["Bracket", "[]{}()<>"],
+    ["Puncuators", `_:;!?,."'`],
+    ["Operators", "~@#$%^&/*-+=|"],
+    ["Letters", "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"]
+]);
 
-text = all;
+let characters = characterSets.get(Array.from(characterSets.keys())[0]).split('');
 
-INPUT.addEventListener('input', () => {
-    const textArray = TEXT.querySelectorAll('span');
-    const textValue = INPUT.value.split('');
+CHARACTER.textContent = characters[0];
+INPUT.addEventListener('keyup', (input) => {isCorrect(input.key.charAt())});
 
-    let correct = true;
-
-    textArray.forEach((characterSpan, index) => {
-        const character = textValue[index];
-
-        if(character == null)
-        {
-            correct = false;
-            characterSpan.classList.remove('correct');
-            characterSpan.classList.remove('incorrect');
-        }
-        else if(character === characterSpan.innerText)
-        {
-            correct = true;
-            characterSpan.classList.add('correct');
-            characterSpan.classList.remove('incorrect');
-        }
-        else if(character !== characterSpan.innerText)
-        {
-            correct = false;
-            characterSpan.classList.remove('correct');
-            characterSpan.classList.add('incorrect');
-        }
-    })
-
-    if(correct == true) console.log('Finished');
-})
-
-async function render()
+function isCorrect(character)
 {
-    TEXT.innerHTML = '';
-    text.split('').forEach(character => {
-        const characterSpan = document.createElement('span')
-        characterSpan.innerText = character
-        TEXT.appendChild(characterSpan)
-    });
+    if(character == characters[index]) CHARACTER.textContent = characters[++index];
+    else if(character != characters[index]) incorrect++;
 
-    timer();
-    TEXT.value = null;
+    if(index >= characters.length && iterations == 0)
+    {
+        console.log('Finished');
+    }
 }
 
-let startTimer;
-
-function timer()
+function populate()
 {
-    TIMER.innerText = 0;
-    startTimer = new Date();
-
-    setInterval(() => {
-        TIMER.innerText = getTimerTime();
-    }, 1000)
+    for(let i = 0; i < characterSets.size; i++)
+    {
+        let opt = Array.from(characterSets.keys())[i];
+        let el = document.createElement("option");
+        el.textContent = opt;
+        el.value = opt;
+        CHARACTER_SETS.appendChild(el);
+    }
 }
 
-function getTimerTime()
+populate();
+
+function selectSet()
 {
-    return Math.floor((new Date() - startTimer) / 1000);
+    index = 0;
+    iterations = 0;
+    incorrect = 0;
+    document.getElementById("character-sets").value = CHARACTER_SETS.options[CHARACTER_SETS.selectedIndex].text;
+    characters = characterSets.get(CHARACTER_SETS.options[CHARACTER_SETS.selectedIndex].value).split('');
+    CHARACTER.textContent = characters[0];
 }
 
-render();
+// let startTimer;
+
+// function timer()
+// {
+//     startTimer = new Date();
+
+//     setInterval(() => {
+//     }, 1000)
+// }
+
+// function getTimerTime()
+// {
+//     return Math.floor((new Date() - startTimer) / 1000);
+// }
