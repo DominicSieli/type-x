@@ -10,9 +10,13 @@
         <link rel="icon" type="image/png" href="Images/icon.png">
     </head>
     <body>
+        <div class="metrics" id="metrics">
+            <div class="incorrect" id="incorrect"></div>
+        </div>
         <div class="settings" id="settings">
-            <input class="iterations" id="iterations">
             <select class="character-sets" id="character-sets" onchange="selectSet()"></select>
+            <select class="order-options" id="order-options" onchange="changeOrder()"></select>
+            <button class="reset-button" id="reset-button" onclick="reset()">Reset</button>
         </div>
         <div class="character" id="character"></div>
     </body>

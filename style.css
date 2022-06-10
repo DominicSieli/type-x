@@ -18,9 +18,10 @@ body
     margin: auto;
     font-size: 10rem;
     font-weight: 700;
+    position: absolute;
     font-family: sans-serif;
     color: rgb(0, 255, 0);
-    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .character-sets
@@ -29,15 +30,54 @@ body
     font-size: 2rem;
     color: rgb(0, 255, 0);
     border-color: rgb(0, 255, 0);
-    background-color: rgb(20, 20, 20)
+    background-color: rgb(20, 20, 20);
+}
+
+.order-options
+{
+    margin: 0px;
+    font-size: 2rem;
+    color: rgb(0, 255, 0);
+    border-color: rgb(0, 255, 0);
+    background-color: rgb(20, 20, 20);
+}
+
+.reset-button
+{
+    margin: 0px;
+    font-size: 2rem;
+    color: rgb(0, 255, 0);
+    border-color: rgb(0, 255, 0);
+    background-color: rgb(20, 20, 20);
+}
+
+.metrics
+{
+    top: 0rem;
+    right: 2rem;
+    margin: 4px;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+}
+
+.incorrect
+{
+    margin: auto;
+    font-size: 4rem;
+    font-weight: 700;
+    position: absolute;
+    font-family: sans-serif;
+    color: rgb(255, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .settings
 {
-    margin: 4px;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
     top: 0;
     left: 0;
+    margin: 4px;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
 }
