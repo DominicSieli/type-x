@@ -51,18 +51,9 @@ body
     background-color: rgb(20, 20, 20);
 }
 
-.metrics
-{
-    top: 0rem;
-    right: 2rem;
-    margin: 4px;
-    position: fixed;
-    align-items: center;
-    justify-content: center;
-}
-
 .incorrect
 {
+    top: 0rem;
     margin: auto;
     font-size: 4rem;
     font-weight: 700;

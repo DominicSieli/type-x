@@ -31,11 +31,7 @@ INPUT.addEventListener('keyup', (input) => {isCorrect(input.key.charAt())});
 function isCorrect(character)
 {
     if(character == characters[index]) CHARACTER.textContent = characters[getNextIndex()];
-    else if(character != characters[index])
-    {
-        incorrect++;
-        INCORRECT.textContent = incorrect;
-    }
+    else if(character != characters[index]) INCORRECT.textContent = ++incorrect;
 }
 
 function populateCharacters()
@@ -71,6 +67,8 @@ function reset()
     incorrect = 0;
     INCORRECT.textContent = incorrect;
     CHARACTER.textContent = characters[index];
+    CHARACTER_SETS.blur();
+    INPUT.focus();
 }
 
 function resetIndex()
