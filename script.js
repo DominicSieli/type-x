@@ -1,12 +1,13 @@
 const INPUT = document.querySelector('body');
-const INCORRECT = document.getElementById('incorrect');
+const INCORRECT_COUNTER = document.getElementById('incorrect-counter');
 const CHARACTER = document.getElementById('character');
 const ORDER_OPTIONS = document.getElementById("order-options");
 const CHARACTER_SETS = document.getElementById("character-sets");
 
 let index = 0;
-let incorrect = 0;
-let order = "Sequential";
+let timer = new Date();
+let incorrectCounter = 0;
+let characterOrder = "Sequential";
 
 const orderOptions = new Array(
     "Sequential",
@@ -24,14 +25,14 @@ const characterSets = new Map([
 
 let characters = characterSets.get(Array.from(characterSets.keys())[0]).split('');
 
-INCORRECT.textContent = incorrect;
+INCORRECT_COUNTER.textContent = incorrectCounter;
 CHARACTER.textContent = characters[resetIndex()];
 INPUT.addEventListener('keyup', (input) => {isCorrect(input.key.charAt())});
 
 function isCorrect(character)
 {
     if(character == characters[index]) CHARACTER.textContent = characters[getNextIndex()];
-    else if(character != characters[index]) INCORRECT.textContent = ++incorrect;
+    else if(character != characters[index]) INCORRECT_COUNTER.textContent = ++incorrectCounter;
 }
 
 function populateCharacters()
@@ -64,8 +65,8 @@ populateOrderOptions();
 function reset()
 {
     resetIndex();
-    incorrect = 0;
-    INCORRECT.textContent = incorrect;
+    incorrectCounter = 0;
+    INCORRECT_COUNTER.textContent = incorrectCounter;
     CHARACTER.textContent = characters[index];
     CHARACTER_SETS.blur();
     INPUT.focus();
@@ -73,20 +74,20 @@ function reset()
 
 function resetIndex()
 {
-    if(order == "Sequential") index = 0;
-    else if(order == "Random") index = getRandomIndex();
+    if(characterOrder == "Sequential") index = 0;
+    else if(characterOrder == "Random") index = getRandomIndex();
 
     return index;
 }
 
 function getNextIndex()
 {
-    if(order == "Sequential")
+    if(characterOrder == "Sequential")
     {
         if(index < characters.length - 1) index += 1;
         else index = 0;
     }
-    else if(order == "Random") index = getRandomIndex();
+    else if(characterOrder == "Random") index = getRandomIndex();
 
     return index;
 }
@@ -99,7 +100,7 @@ function getRandomIndex()
 function changeOrder()
 {
     ORDER_OPTIONS.value = ORDER_OPTIONS.options[ORDER_OPTIONS.selectedIndex].text;
-    order = ORDER_OPTIONS.options[ORDER_OPTIONS.selectedIndex].value;
+    characterOrder = ORDER_OPTIONS.options[ORDER_OPTIONS.selectedIndex].value;
     ORDER_OPTIONS.blur();
     INPUT.focus();
     reset();
@@ -115,17 +116,15 @@ function selectSet()
     reset();
 }
 
-// let startTimer;
+function startTimer()
+{
+    timer = new Date();
 
-// function timer()
-// {
-//     startTimer = new Date();
+    setInterval(() => {
+    }, 1000)
+}
 
-//     setInterval(() => {
-//     }, 1000)
-// }
-
-// function getTimerTime()
-// {
-//     return Math.floor((new Date() - startTimer) / 1000);
-// }
+function stopTimer()
+{
+    return Math.floor(new Date() - timer);
+}
