@@ -116,15 +116,15 @@ function selectSet()
     reset();
 }
 
-function startTimer()
-{
-    timer = new Date();
-
-    setInterval(() => {
-    }, 1000)
-}
-
-function stopTimer()
-{
-    return Math.floor(new Date() - timer);
-}
+// function startTimer()
+// {
+//     timer = new Date();
+//
+//     setInterval(() => {
+//     }, 1000)
+// }
+//
+// function stopTimer()
+// {
+//     return Math.floor(new Date() - timer);
+// }
