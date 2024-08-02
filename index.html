@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us">
 	<head>
 		<title>TypeX</title>
-		<script defer src="script.js"></script>
-		<link rel="stylesheet" href="style.css">
 		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="icon" type="image/png" href="images/icon.png">
+		<script src="script.js" defer></script>
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<div class="incorrect-counter" id="incorrect-counter"></div>
-		<div class="settings" id="settings">
-			<select class="character-sets" id="character-sets" onchange="selectSet()"></select>
-			<select class="order-options" id="order-options" onchange="changeOrder()"></select>
-			<button class="reset-button" id="reset-button" onclick="reset()">Reset</button>
+		<div id="settings">
+			<select id="character-sets" onchange="setCharacterSet()"></select>
+			<select id="order-options" onchange="setOrder()"></select>
+			<button id="reset-button" onclick="reset()">Reset</button>
 		</div>
-		<div class="character" id="character"></div>
+		<div id="error-counter"></div>
+		<div id="character"></div>
 	</body>
 </html>
