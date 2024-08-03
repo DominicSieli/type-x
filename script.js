@@ -1,4 +1,4 @@
-const INPUT = document.querySelector('body');
+const INPUT_LISTENER = document.querySelector('body');
 const ERROR_COUNTER = document.getElementById('error-counter');
 const CHARACTER = document.getElementById('character');
 const ORDER_OPTIONS = document.getElementById("order-options");
@@ -16,18 +16,18 @@ const orderOptions = new Array(
 
 const characterSets = new Map([
 	["Digits", "0123456789"],
-	["Bracket", "[]{}()<>"],
-	["Puncuators", `_:;!?,."'`],
+	["Brackets", "[]{}()<>"],
+	["Punctuators", `_:;!?,."'`],
 	["Operators", "~@#$%^&*-+=|\\/"],
-	["Letters-Upper", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"],
-	["Letters-Lower", "abcdefghijklmnopqrstuvwxyz"]
+	["Letters-Uppercase", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"],
+	["Letters-Lowercase", "abcdefghijklmnopqrstuvwxyz"]
 ]);
 
 let characters = characterSets.get(Array.from(characterSets.keys())[0]).split('');
 
 ERROR_COUNTER.textContent = errorCounter;
 CHARACTER.textContent = characters[resetIndex()];
-INPUT.addEventListener('keyup', (input) => {isCorrect(input.key.charAt())});
+INPUT_LISTENER.addEventListener('keyup', (input) => {isCorrect(input.key.charAt())});
 
 function isCorrect(character)
 {
@@ -69,7 +69,7 @@ function reset()
 	ERROR_COUNTER.textContent = errorCounter;
 	CHARACTER.textContent = characters[index];
 	CHARACTER_SETS.blur();
-	INPUT.focus();
+	INPUT_LISTENER.focus();
 }
 
 function resetIndex()
@@ -102,7 +102,7 @@ function setOrder()
 	ORDER_OPTIONS.value = ORDER_OPTIONS.options[ORDER_OPTIONS.selectedIndex].text;
 	characterOrder = ORDER_OPTIONS.options[ORDER_OPTIONS.selectedIndex].value;
 	ORDER_OPTIONS.blur();
-	INPUT.focus();
+	INPUT_LISTENER.focus();
 	reset();
 }
 
@@ -112,7 +112,7 @@ function setCharacterSet()
 	characters = characterSets.get(CHARACTER_SETS.options[CHARACTER_SETS.selectedIndex].value).split('');
 	CHARACTER.textContent = characters[0];
 	CHARACTER_SETS.blur();
-	INPUT.focus();
+	INPUT_LISTENER.focus();
 	reset();
 }
 
