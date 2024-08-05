@@ -1,4 +1,4 @@
-const INPUT_LISTENER = document.querySelector('body');
+const INPUT_LISTENER = document.body;
 const ERROR_COUNTER = document.getElementById('error-counter');
 const CHARACTER = document.getElementById('character');
 const ORDER_OPTIONS = document.getElementById("order-options");
